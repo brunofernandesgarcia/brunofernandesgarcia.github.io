@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bruno — Solar Physics Researcher</title>
+  <meta name="description" content="Doctoral researcher at INPE, London. Solar physics, DEM analysis, NLFFF extrapolation via PINNs.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:           #F9F6F1;
+      --bg-card:      #FFFFFF;
+      --text:         #1C1917;
+      --muted:        #78716C;
+      --accent:       #B45309;
+      --accent-soft:  #FEF3C7;
+      --border:       #E7E2DC;
+      --border-mid:   #C9C0B8;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── Nav ───────────────────────────────────── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(249,246,241,.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav .inner {
+      max-width: 820px; margin: 0 auto;
+      padding: 0 2rem;
+      display: flex; align-items: center;
+      justify-content: space-between;
+      height: 56px;
+    }
+
+    .nav-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem; font-weight: 400;
+      letter-spacing: 0.02em;
+      color: var(--text); text-decoration: none;
+    }
+
+    nav ul { list-style: none; display: flex; gap: 2px; }
+
+    nav ul li a {
+      font-size: 12px; font-weight: 400;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none;
+      padding: 6px 12px; border-radius: 4px;
+      transition: color .2s;
+    }
+    nav ul li a:hover { color: var(--text); }
+
+    /* ─── Layout ─────────────────────────────────── */
+    .container { max-width: 820px; margin: 0 auto; padding: 0 2rem; }
+
+    section { padding: 5.5rem 0; border-bottom: 1px solid var(--border); }
+    section:last-of-type { border-bottom: none; }
+
+    .section-label {
+      font-size: 11px; letter-spacing: .18em;
+      text-transform: uppercase; color: var(--accent);
+      font-weight: 500; margin-bottom: .6rem;
+    }
+
+    h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      font-weight: 300; line-height: 1.1;
+      letter-spacing: -.01em; margin-bottom: 2.5rem;
+    }
+
+    /* ─── Hero ──────────────────────────────────── */
+    #hero {
+      padding: 9rem 0 7rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-eyebrow {
+      font-size: 12px; letter-spacing: .16em;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .hero-eyebrow::before {
+      content: ''; display: inline-block;
+      width: 28px; height: 1px; background: var(--accent);
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.5rem, 9vw, 6.5rem);
+      font-weight: 300; line-height: 1.0;
+      letter-spacing: -.015em; margin-bottom: 1.5rem;
+    }
+    h1 em { font-style: italic; color: var(--muted); display: block; }
+
+    .hero-tagline {
+      font-size: 17px; font-weight: 300;
+      color: var(--muted); max-width: 540px;
+      line-height: 1.7; margin-bottom: 2.75rem;
+    }
+
+    .hero-links { display: flex; flex-wrap: wrap; gap: 10px; }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-size: 13px; font-weight: 500; letter-spacing: .04em;
+      text-decoration: none; padding: 10px 20px;
+      border-radius: 4px; transition: all .2s;
+    }
+    .btn-dark  { background: var(--text); color: var(--bg); }
+    .btn-dark:hover  { background: var(--accent); }
+    .btn-ghost { border: 1px solid var(--border-mid); color: var(--text); }
+    .btn-ghost:hover { border-color: var(--text); }
+
+    /* ─── About ─────────────────────────────────── */
+    .about-body {
+      font-size: 17px; font-weight: 300;
+      line-height: 1.85; max-width: 640px;
+    }
+    .about-body p + p { margin-top: 1.2rem; }
+
+    .about-meta {
+      margin-top: 2.75rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+    .meta-label {
+      font-size: 11px; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--muted);
+      display: block; margin-bottom: 4px;
+    }
+    .meta-value { font-size: 14px; font-weight: 400; }
+
+    /* ─── Research cards ─────────────────────────── */
+    .research-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border-mid);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .research-card {
+      padding: 2rem 1.75rem;
+      background: var(--bg-card);
+      transition: background .2s;
+    }
+    .research-card:hover { background: var(--accent-soft); }
+
+    .card-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem; font-weight: 300;
+      color: var(--border-mid); line-height: 1;
+      margin-bottom: 1.25rem;
+    }
+    .research-card h3 {
+      font-size: 15px; font-weight: 500;
+      margin-bottom: .5rem; line-height: 1.4;
+    }
+    .research-card p { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+    /* ─── Publications ──────────────────────────── */
+    .pub-list { list-style: none; }
+    .pub-item {
+      display: grid;
+      grid-template-columns: 52px 1fr;
+      gap: 1.75rem;
+      padding: 1.75rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .pub-item:first-child { border-top: 1px solid var(--border); }
+
+    .pub-year {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem; font-weight: 300;
+      color: var(--muted); padding-top: 2px;
+    }
+    .pub-title {
+      font-size: 15px; font-weight: 500;
+      line-height: 1.45; margin-bottom: 5px;
+    }
+    .pub-authors { font-size: 13px; color: var(--muted); margin-bottom: 4px; }
+    .pub-authors strong { color: var(--text); font-weight: 500; }
+    .pub-journal { font-size: 13px; color: var(--accent); font-style: italic; }
+    .pub-doi {
+      display: inline-block; margin-top: 8px;
+      font-size: 12px; font-weight: 500;
+      letter-spacing: .06em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: all .2s;
+    }
+    .pub-doi:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+    .pub-badge {
+      display: inline-block; font-size: 11px;
+      padding: 2px 8px; border-radius: 3px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-weight: 500; margin-top: 8px;
+    }
+
+    /* ─── CV ─────────────────────────────────────── */
+    .cv-desc {
+      font-size: 16px; color: var(--muted);
+      max-width: 480px; margin-bottom: 2rem;
+    }
+
+    /* ─── Contact ────────────────────────────────── */
+    .contact-intro {
+      font-size: 16px; color: var(--muted);
+      max-width: 500px; margin-bottom: 2rem;
+    }
+    .contact-links { display: flex; flex-wrap: wrap; gap: 10px; }
+    .contact-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 14px; font-weight: 400;
+      color: var(--text); text-decoration: none;
+      padding: 10px 16px; border-radius: 4px;
+      border: 1px solid var(--border);
+      transition: all .2s;
+    }
+    .contact-link:hover { border-color: var(--accent); color: var(--accent); }
+    .contact-link svg { width: 15px; height: 15px; flex-shrink: 0; }
+
+    /* ─── Footer ─────────────────────────────────── */
+    footer {
+      padding: 2.5rem 0; text-align: center;
+      font-size: 13px; color: var(--muted);
+    }
+    footer a { color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--accent); }
+
+    /* ─── Fade-in animations ─────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .fu { opacity: 0; animation: fadeUp .65s ease forwards; }
+    .fu:nth-child(1) { animation-delay: .05s; }
+    .fu:nth-child(2) { animation-delay: .2s;  }
+    .fu:nth-child(3) { animation-delay: .35s; }
+    .fu:nth-child(4) { animation-delay: .5s;  }
+    .fu:nth-child(5) { animation-delay: .65s; }
+
+    /* ─── Responsive ─────────────────────────────── */
+    @media (max-width: 580px) {
+      nav ul { display: none; }
+      section { padding: 4rem 0; }
+      #hero { padding: 5.5rem 0 4rem; }
+      .pub-item { grid-template-columns: 1fr; gap: .25rem; }
+      .pub-year { font-size: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── Navigation ──────────────────────────────── -->
+<nav>
+  <div class="inner">
+    <a href="#" class="nav-name">B. [Sobrenome]</a>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#cv">CV</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ─── Hero ────────────────────────────────────── -->
+<section id="hero">
+  <div class="container">
+    <p class="hero-eyebrow fu">Doctoral Researcher · Solar Physics</p>
+    <h1 class="fu">
+      Bruno<br>
+      <em>[Sobrenome]</em>
+    </h1>
+    <p class="hero-tagline fu">
+      Investigating coronal plasma thermodynamics and magnetic field topology
+      in solar active regions — combining SDO/AIA EUV observations,
+      differential emission measure inversions, and physics-informed neural networks.
+    </p>
+    <div class="hero-links fu">
+      <a href="#research" class="btn btn-dark">View Research</a>
+      <a href="cv.pdf"    class="btn btn-ghost" download>↓ Download CV</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── About ───────────────────────────────────── -->
+<section id="about">
+  <div class="container">
+    <p class="section-label">About</p>
+    <h2>Background</h2>
+    <div class="about-body">
+      <p>
+        I am a doctoral researcher affiliated with INPE (Instituto Nacional de Pesquisas Espaciais),
+        currently based in London. My work sits at the intersection of solar physics,
+        machine learning, and computational magnetohydrodynamics.
+      </p>
+      <p>
+        My primary case study focuses on NOAA Active Region 3663 around an X-class
+        flare event in May 2024. I develop and apply multi-channel DEM inversion pipelines
+        on SDO/AIA data to reconstruct temperature and density maps of the corona, and
+        validate nonlinear force-free field (NLFFF) extrapolations produced by a
+        physics-informed neural network framework (PyMHS) against established numerical methods.
+      </p>
+      <p>
+        [Adicione aqui uma frase sobre sua trajetória pessoal ou motivação — opcional.]
+      </p>
+    </div>
+    <div class="about-meta">
+      <div>
+        <span class="meta-label">Institution</span>
+        <span class="meta-value">INPE</span>
+      </div>
+      <div>
+        <span class="meta-label">Location</span>
+        <span class="meta-value">London, UK</span>
+      </div>
+      <div>
+        <span class="meta-label">Research Interests</span>
+        <span class="meta-value">Solar Corona · Space Weather · ML in Heliophysics</span>
+      </div>
+      <div>
+        <span class="meta-label">Methods</span>
+        <span class="meta-value">SDO/AIA · DEMReg · NLFFF · PINNs · PyTorch</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Research ─────────────────────────────────── -->
+<section id="research">
+  <div class="container">
+    <p class="section-label">Research</p>
+    <h2>Current Projects</h2>
+    <div class="research-grid">
+      <div class="research-card">
+        <div class="card-num">01</div>
+        <h3>Coronal DEM Analysis</h3>
+        <p>
+          Pixel-by-pixel differential emission measure inversions of 6-channel
+          SDO/AIA EUV data to reconstruct temperature and electron density maps
+          of NOAA AR3663 across pre-flare and flare phases.
+        </p>
+      </div>
+      <div class="research-card">
+        <div class="card-num">02</div>
+        <h3>NLFFF Extrapolation via PINNs</h3>
+        <p>
+          Developing PyMHS — a physics-informed neural network for nonlinear
+          force-free magnetic field extrapolation — and benchmarking it against
+          CCMC/NASA numerical reference solutions.
+        </p>
+      </div>
+      <div class="research-card">
+        <div class="card-num">03</div>
+        <h3>Coronal Heating Diagnostics</h3>
+        <p>
+          Applying RTV scaling laws along NLFFF field lines with DEM-derived
+          thermodynamic parameters to estimate volumetric heating rates
+          and coronal energy flux distributions.
+        </p>
+      </div>
+      <div class="research-card">
+        <div class="card-num">04</div>
+        <h3>Flare Event Characterization</h3>
+        <p>
+          Multi-wavelength study of the May 2024 X-class flare in AR3663,
+          characterizing plasma dynamics, magnetic topology changes,
+          and energy release mechanisms.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Publications ─────────────────────────────── -->
+<section id="publications">
+  <div class="container">
+    <p class="section-label">Publications</p>
+    <h2>Selected Works</h2>
+
+    <!--
+      INSTRUÇÕES: Substitua cada <li> com suas publicações reais.
+      Para adicionar mais, copie um bloco <li class="pub-item">…</li>.
+    -->
+
+    <ul class="pub-list">
+
+      <li class="pub-item">
+        <span class="pub-year">2024</span>
+        <div>
+          <p class="pub-title">[Título da sua publicação mais recente]</p>
+          <p class="pub-authors"><strong>B. [Sobrenome]</strong>, Autor A., Autor B.</p>
+          <p class="pub-journal">Journal of Geophysical Research: Space Physics</p>
+          <a href="https://doi.org/XXXXX" class="pub-doi" target="_blank">DOI →</a>
+        </div>
+      </li>
+
+      <li class="pub-item">
+        <span class="pub-year">2023</span>
+        <div>
+          <p class="pub-title">[Título de publicação anterior]</p>
+          <p class="pub-authors"><strong>B. [Sobrenome]</strong>, Autor A.</p>
+          <p class="pub-journal">Solar Physics</p>
+          <a href="https://doi.org/XXXXX" class="pub-doi" target="_blank">DOI →</a>
+        </div>
+      </li>
+
+      <li class="pub-item">
+        <span class="pub-year">—</span>
+        <div>
+          <p class="pub-title" style="color: #78716C; font-style: italic;">
+            NLFFF Extrapolation of NOAA AR3663 via Physics-Informed Neural Networks
+          </p>
+          <p class="pub-authors"><strong>B. [Sobrenome]</strong> et al.</p>
+          <p class="pub-journal">In preparation</p>
+          <span class="pub-badge">In preparation</span>
+        </div>
+      </li>
+
+    </ul>
+  </div>
+</section>
+
+<!-- ─── CV ────────────────────────────────────────── -->
+<section id="cv">
+  <div class="container">
+    <p class="section-label">Curriculum Vitae</p>
+    <h2>Academic CV</h2>
+    <p class="cv-desc">
+      My full CV includes academic formation, research experience, publications,
+      conference contributions, and technical skills. Updated regularly.
+    </p>
+    <a href="cv.pdf" class="btn btn-dark" download>↓ Download PDF</a>
+    &nbsp;
+    <a href="cv.pdf" class="btn btn-ghost" target="_blank">View online →</a>
+  </div>
+</section>
+
+<!-- ─── Contact ───────────────────────────────────── -->
+<section id="contact">
+  <div class="container">
+    <p class="section-label">Contact</p>
+    <h2>Get in Touch</h2>
+    <p class="contact-intro">
+      I welcome collaborations and discussions on solar physics, DEM pipelines,
+      NLFFF methods, and machine learning approaches in heliophysics.
+    </p>
+    <div class="contact-links">
+
+      <a href="mailto:seu@email.com" class="contact-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/>
+        </svg>
+        Email
+      </a>
+
+      <a href="https://github.com/[seu-usuario]" class="contact-link" target="_blank">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.1.83-.26.83-.58v-2.02c-3.34.73-4.04-1.61-4.04-1.61-.54-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.48 1 .1-.78.42-1.3.76-1.6-2.66-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.17 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02.005 2.04.14 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.65.24 2.87.12 3.17.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.82 1.1.82 2.22v3.29c0 .32.22.69.83.57C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/>
+        </svg>
+        GitHub
+      </a>
+
+      <a href="https://scholar.google.com/citations?user=[seu-id]" class="contact-link" target="_blank">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14Zm0-24 9 4v4H3V4l9-4Zm-.5 16.9a5.1 5.1 0 1 0 1 0h-1Z"/>
+        </svg>
+        Google Scholar
+      </a>
+
+      <a href="https://orcid.org/[seu-orcid]" class="contact-link" target="_blank">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947s-.422.947-.947.947a.95.95 0 0 1-.947-.947c0-.525.422-.947.947-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.016-5.325 5.016h-3.919V7.416zm1.444 1.303v7.444h2.297c3.272 0 3.872-2.412 3.872-3.722 0-2.016-1.2-3.722-3.872-3.722h-2.297z"/>
+        </svg>
+        ORCID
+      </a>
+
+      <a href="https://linkedin.com/in/[seu-perfil]" class="contact-link" target="_blank">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.35-1.85 3.59 0 4.25 2.36 4.25 5.43v6.31zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zm1.78 13.02H3.56V9h3.56v11.45zM22.23 0H1.77C.8 0 0 .77 0 1.72v20.56C0 23.23.8 24 1.77 24h20.46C23.2 24 24 23.23 24 22.28V1.72C24 .77 23.2 0 22.23 0z"/>
+        </svg>
+        LinkedIn
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── Footer ────────────────────────────────────── -->
+<footer>
+  <div class="container">
+    <p>© 2025 Bruno [Sobrenome] &nbsp;·&nbsp; Built with GitHub Pages &nbsp;·&nbsp;
+      <a href="https://github.com/[seu-usuario]/[seu-usuario].github.io">Source</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
