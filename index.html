@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bruno — Solar Physics Researcher</title>
-  <meta name="description" content="Doctoral researcher at INPE, London. Solar physics, DEM analysis, NLFFF extrapolation via PINNs.">
+  <meta name="description" content="Doctoral researcher at INPE & QMUL, London. Solar physics, DEM analysis, NLFFF extrapolation via PINNs.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
@@ -21,9 +21,7 @@
     }
 
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
     html { scroll-behavior: smooth; font-size: 16px; }
-
     body {
       font-family: 'DM Sans', sans-serif;
       background: var(--bg);
@@ -39,7 +37,6 @@
       backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border);
     }
-
     nav .inner {
       max-width: 820px; margin: 0 auto;
       padding: 0 2rem;
@@ -47,16 +44,13 @@
       justify-content: space-between;
       height: 56px;
     }
-
     .nav-name {
       font-family: 'Cormorant Garamond', serif;
       font-size: 1.1rem; font-weight: 400;
       letter-spacing: 0.02em;
       color: var(--text); text-decoration: none;
     }
-
     nav ul { list-style: none; display: flex; gap: 2px; }
-
     nav ul li a {
       font-size: 12px; font-weight: 400;
       letter-spacing: 0.1em; text-transform: uppercase;
@@ -68,16 +62,13 @@
 
     /* ─── Layout ─────────────────────────────────── */
     .container { max-width: 820px; margin: 0 auto; padding: 0 2rem; }
-
     section { padding: 5.5rem 0; border-bottom: 1px solid var(--border); }
     section:last-of-type { border-bottom: none; }
-
     .section-label {
       font-size: 11px; letter-spacing: .18em;
       text-transform: uppercase; color: var(--accent);
       font-weight: 500; margin-bottom: .6rem;
     }
-
     h2 {
       font-family: 'Cormorant Garamond', serif;
       font-size: clamp(2.2rem, 5vw, 3.2rem);
@@ -90,7 +81,32 @@
       padding: 9rem 0 7rem;
       border-bottom: 1px solid var(--border);
     }
-
+    .hero-inner {
+      display: flex;
+      align-items: center;
+      gap: 4rem;
+      flex-wrap: wrap;
+    }
+    .hero-photo {
+      width: 160px; height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--border-mid);
+      flex-shrink: 0;
+    }
+    /* Placeholder shown when photo file is missing */
+    .hero-photo-placeholder {
+      width: 160px; height: 160px;
+      border-radius: 50%;
+      border: 3px solid var(--border-mid);
+      background: var(--accent-soft);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem; font-weight: 300;
+      color: var(--accent);
+    }
+    .hero-text { flex: 1; min-width: 260px; }
     .hero-eyebrow {
       font-size: 12px; letter-spacing: .16em;
       text-transform: uppercase; color: var(--accent);
@@ -101,7 +117,6 @@
       content: ''; display: inline-block;
       width: 28px; height: 1px; background: var(--accent);
     }
-
     h1 {
       font-family: 'Cormorant Garamond', serif;
       font-size: clamp(3.5rem, 9vw, 6.5rem);
@@ -109,15 +124,12 @@
       letter-spacing: -.015em; margin-bottom: 1.5rem;
     }
     h1 em { font-style: italic; color: var(--muted); display: block; }
-
     .hero-tagline {
       font-size: 17px; font-weight: 300;
       color: var(--muted); max-width: 540px;
       line-height: 1.7; margin-bottom: 2.75rem;
     }
-
     .hero-links { display: flex; flex-wrap: wrap; gap: 10px; }
-
     .btn {
       display: inline-flex; align-items: center; gap: 7px;
       font-size: 13px; font-weight: 500; letter-spacing: .04em;
@@ -135,7 +147,6 @@
       line-height: 1.85; max-width: 640px;
     }
     .about-body p + p { margin-top: 1.2rem; }
-
     .about-meta {
       margin-top: 2.75rem;
       display: grid;
@@ -149,7 +160,7 @@
       text-transform: uppercase; color: var(--muted);
       display: block; margin-bottom: 4px;
     }
-    .meta-value { font-size: 14px; font-weight: 400; }
+    .meta-value { font-size: 14px; font-weight: 400; display: block; }
 
     /* ─── Research cards ─────────────────────────── */
     .research-grid {
@@ -167,7 +178,6 @@
       transition: background .2s;
     }
     .research-card:hover { background: var(--accent-soft); }
-
     .card-num {
       font-family: 'Cormorant Garamond', serif;
       font-size: 3rem; font-weight: 300;
@@ -181,6 +191,15 @@
     .research-card p { font-size: 14px; color: var(--muted); line-height: 1.6; }
 
     /* ─── Publications ──────────────────────────── */
+    .pub-section-title {
+      font-size: 11px; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--muted);
+      font-weight: 500; margin: 2.5rem 0 0;
+      padding-bottom: .5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .pub-section-title:first-of-type { margin-top: 0; }
+
     .pub-list { list-style: none; }
     .pub-item {
       display: grid;
@@ -189,8 +208,6 @@
       padding: 1.75rem 0;
       border-bottom: 1px solid var(--border);
     }
-    .pub-item:first-child { border-top: 1px solid var(--border); }
-
     .pub-year {
       font-family: 'Cormorant Garamond', serif;
       font-size: 1.5rem; font-weight: 300;
@@ -212,13 +229,46 @@
       transition: all .2s;
     }
     .pub-doi:hover { color: var(--accent); border-bottom-color: var(--accent); }
-
     .pub-badge {
       display: inline-block; font-size: 11px;
       padding: 2px 8px; border-radius: 3px;
       background: var(--accent-soft);
       color: var(--accent);
-      font-weight: 500; margin-top: 8px;
+      font-weight: 500; margin-top: 8px; margin-left: 6px;
+    }
+
+    /* ─── Talks / Upcoming ──────────────────────── */
+    .talk-list { list-style: none; }
+    .talk-item {
+      display: grid;
+      grid-template-columns: 52px 1fr;
+      gap: 1.75rem;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--border);
+      align-items: start;
+    }
+    .talk-item:first-child { border-top: 1px solid var(--border); }
+    .talk-year {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem; font-weight: 300;
+      color: var(--muted); padding-top: 2px;
+    }
+    .talk-title {
+      font-size: 15px; font-weight: 500;
+      line-height: 1.45; margin-bottom: 4px;
+    }
+    .talk-meta { font-size: 13px; color: var(--muted); }
+    .talk-badge {
+      display: inline-block; font-size: 11px;
+      padding: 2px 8px; border-radius: 3px;
+      background: #ECFDF5; color: #059669;
+      font-weight: 500; margin-top: 6px;
+    }
+    .talk-badge-upcoming {
+      display: inline-block; font-size: 11px;
+      padding: 2px 8px; border-radius: 3px;
+      background: #EFF6FF; color: #2563EB;
+      font-weight: 500; margin-top: 6px;
     }
 
     /* ─── CV ─────────────────────────────────────── */
@@ -252,7 +302,18 @@
     footer a { color: var(--muted); text-decoration: none; }
     footer a:hover { color: var(--accent); }
 
-    /* ─── Fade-in animations ─────────────────────── */
+    /* ─── Scroll-reveal animations ───────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .65s ease, transform .65s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Hero still uses keyframe (fires immediately on load) */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(18px); }
       to   { opacity: 1; transform: translateY(0); }
@@ -269,8 +330,10 @@
       nav ul { display: none; }
       section { padding: 4rem 0; }
       #hero { padding: 5.5rem 0 4rem; }
-      .pub-item { grid-template-columns: 1fr; gap: .25rem; }
-      .pub-year { font-size: 1rem; }
+      .hero-inner { gap: 2rem; }
+      .hero-photo, .hero-photo-placeholder { width: 110px; height: 110px; }
+      .pub-item, .talk-item { grid-template-columns: 1fr; gap: .25rem; }
+      .pub-year, .talk-year { font-size: 1rem; }
     }
   </style>
 </head>
@@ -284,6 +347,7 @@
       <li><a href="#about">About</a></li>
       <li><a href="#research">Research</a></li>
       <li><a href="#publications">Publications</a></li>
+      <li><a href="#talks">Talks</a></li>
       <li><a href="#cv">CV</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
@@ -293,19 +357,32 @@
 <!-- ─── Hero ────────────────────────────────────── -->
 <section id="hero">
   <div class="container">
-    <p class="hero-eyebrow fu">PhD Student · Solar Physics</p>
-    <h1 class="fu">
-      Bruno Fernandes<br>
-      <em>Garcia</em>
-    </h1>
-    <p class="hero-tagline fu">
-      Investigating coronal plasma thermodynamics and magnetic field topology
-      in solar active regions — combining SDO/AIA EUV observations,
-      differential emission measure inversions, and physics-informed neural networks.
-    </p>
-    <div class="hero-links fu">
-      <a href="#research" class="btn btn-dark">View Research</a>
-      <a href="CV_BrunoFernandesGarcia.pdf"    class="btn btn-ghost" download>↓ Download CV</a>
+    <div class="hero-inner">
+
+      <!--
+        FOTO: Substitua o placeholder abaixo por:
+        <img src="foto.jpg" alt="Bruno Fernandes Garcia" class="hero-photo">
+        (depois de subir a imagem no repositório)
+      -->
+      <div class="hero-photo-placeholder fu">BG</div>
+
+      <div class="hero-text">
+        <p class="hero-eyebrow fu">PhD Student · Solar Physics</p>
+        <h1 class="fu">
+          Bruno Fernandes<br>
+          <em>Garcia</em>
+        </h1>
+        <p class="hero-tagline fu">
+          Investigating coronal plasma thermodynamics and magnetic field topology
+          in solar active regions — combining SDO/AIA EUV observations,
+          differential emission measure inversions, and physics-informed neural networks.
+        </p>
+        <div class="hero-links fu">
+          <a href="#research" class="btn btn-dark">View Research</a>
+          <a href="CV_BrunoFernandesGarcia.pdf" class="btn btn-ghost" download>↓ Download CV</a>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -314,27 +391,29 @@
 <section id="about">
   <div class="container">
     <p class="section-label">About</p>
-    <h2>Background</h2>
-    <div class="about-body">
+    <h2 class="reveal">Background</h2>
+    <div class="about-body reveal">
       <p>
-        I am a PhD Student from Pos-Graduate Program of Space Geophysics at INPE (Instituto Nacional de Pesquisas Espaciais),
-        currently based in London. My work sits at the intersection of solar physics,
-        machine learning, and computational magnetohydrodynamics.
+        I am a PhD Student in the Post-Graduate Program of Space Geophysics at INPE
+        (Instituto Nacional de Pesquisas Espaciais), currently based in London as part of
+        a sandwich doctorate arrangement with Queen Mary University of London (QMUL).
+        My work sits at the intersection of solar physics, machine learning, and
+        computational magnetohydrodynamics.
       </p>
       <p>
-        My first case study was the extreme solar activity that occurred in the first two weeks of May 2024,
-        focusing on solar flares from the NOAA active regions AR 13663 and 13664.
-        I am currently studying NOAA Active Region 3663 around an X-class
-        flare event in May 2024. I develop and apply multi-channel DEM inversion pipelines
-        on SDO/AIA data to reconstruct temperature and density maps of the corona, and
-        validate nonlinear force-free field (NLFFF) extrapolations produced by a
-        physics-informed neural network framework (PyMHS) against established numerical methods.
+        My first case study was the extreme solar activity of May 2024,
+        focusing on solar flares from NOAA active regions AR 13663 and 13664.
+        I develop and apply multi-channel DEM inversion pipelines on SDO/AIA data
+        to reconstruct temperature and density maps of the corona, and validate
+        nonlinear force-free field (NLFFF) extrapolations produced by a
+        physics-informed neural network framework (PyMHS) against established
+        numerical methods.
       </p>
       <p>
-        "Eu sou apenas um rapaz latino-americano, sem dinheiro no banco, sem parentes importantes e vindo do interior." - Belchior
+        "Eu sou apenas um rapaz latino-americano, sem dinheiro no banco, sem parentes importantes e vindo do interior." — Belchior
       </p>
     </div>
-    <div class="about-meta">
+    <div class="about-meta reveal">
       <div>
         <span class="meta-label">Institution</span>
         <span class="meta-value">INPE</span>
@@ -361,8 +440,8 @@
 <section id="research">
   <div class="container">
     <p class="section-label">Research</p>
-    <h2>Current Projects</h2>
-    <div class="research-grid">
+    <h2 class="reveal">Current Projects</h2>
+    <div class="research-grid reveal">
       <div class="research-card">
         <div class="card-num">01</div>
         <h3>Coronal DEM Analysis</h3>
@@ -407,53 +486,101 @@
 <section id="publications">
   <div class="container">
     <p class="section-label">Publications</p>
-    <h2>Selected Works</h2>
+    <h2 class="reveal">Selected Works</h2>
 
-    <!--
-      INSTRUÇÕES: Substitua cada <li> com suas publicações reais.
-      Para adicionar mais, copie um bloco <li class="pub-item">…</li>.
-    -->
-
+    <!-- ── Journal Articles ── -->
+    <p class="pub-section-title reveal">Journal Articles</p>
     <ul class="pub-list">
 
-      <li class="pub-item">
+      <li class="pub-item reveal">
         <span class="pub-year">2026</span>
         <div>
           <p class="pub-title">Extreme Temporal Clustering of Solar Flares in AR 13663/13664: Magnetic Topology and Recurrence Time in May 2024</p>
           <p class="pub-authors"><strong>B. F. Garcia</strong>, J. E. R. Costa, L. E. A. Vieira, A. Dal Lago, C. V. Pena, J. M. S. Rocha, I. Raji.</p>
-          <p class="pub-journal">Semana Acadêmica da Geofísica Espacial (3.: 2025: São José dos Campos, SP) </p>
+          <p class="pub-journal">Advances in Space Research</p>
           <a href="https://doi.org/10.1016/j.asr.2026.04.125" class="pub-doi" target="_blank">DOI →</a>
+          <span class="pub-badge">In Press</span>
         </div>
       </li>
 
-
-       <li class="pub-item">
-        <span class="pub-year">2025</span>
-        <div>
-          <p class="pub-title">Aplicando Redes Neurais Informadas pela Física (PINNs) à Extrapolação do Campo Magnético Solar: O Teste da AR 11158</p>
-          <p class="pub-authors"><strong>B. F. Garcia</strong>, J. E. R. Costa, L. E. A. Vieira.</p>
-          <p class="pub-journal">INSTITUTO NACIONAL DE PESQUISAS ESPACIAIS</p>
-          <a href="http://urlib.net/ibi/8JMKD2USPTW34P/4EDAK7H" class="pub-doi" target="_blank">DOI →</a>
-        </div>
-      </li>
-      
-       <li class="pub-item">
-        <span class="pub-year">2025</span>
-        <div>
-          <p class="pub-title">PINNs e aplicação em simulações de campo magnético solar: um estudo de caso da AR NOAA 11158</p>
-          <p class="pub-authors"><strong>B. F. Garcia</strong>, J. E. R. Costa, L. E. A. Vieira.</p>
-          <p class="pub-journal">XXV Workshop de Computação Aplicada , INPE, 9-12 September 2025</p>
-          <a href="https://doi.org/10.5281/zenodo.17246092" class="pub-doi" target="_blank">DOI →</a>
-        </div>
-      </li>
-      
-      <li class="pub-item">
+      <li class="pub-item reveal">
         <span class="pub-year">2021</span>
         <div>
           <p class="pub-title">Física solar: uma experiência de ensino remoto durante a pandemia</p>
           <p class="pub-authors"><strong>B. F. Garcia</strong>, S. B. Soltau.</p>
           <p class="pub-journal">Research, Society and Development</p>
           <a href="http://dx.doi.org/10.33448/rsd-v10i3.134951" class="pub-doi" target="_blank">DOI →</a>
+        </div>
+      </li>
+
+    </ul>
+
+    <!-- ── Technical Reports ── -->
+    <p class="pub-section-title reveal">Technical Reports</p>
+    <ul class="pub-list">
+
+      <li class="pub-item reveal">
+        <span class="pub-year">2025</span>
+        <div>
+          <p class="pub-title">Aplicando Redes Neurais Informadas pela Física (PINNs) à Extrapolação do Campo Magnético Solar: O Teste da AR 11158</p>
+          <p class="pub-authors"><strong>B. F. Garcia</strong>, J. E. R. Costa, L. E. A. Vieira.</p>
+          <p class="pub-journal">Instituto Nacional de Pesquisas Espaciais</p>
+          <a href="http://urlib.net/ibi/8JMKD2USPTW34P/4EDAK7H" class="pub-doi" target="_blank">DOI →</a>
+        </div>
+      </li>
+
+    </ul>
+
+    <!-- ── Conference Proceedings ── -->
+    <p class="pub-section-title reveal">Conference Proceedings</p>
+    <ul class="pub-list">
+
+      <li class="pub-item reveal">
+        <span class="pub-year">2025</span>
+        <div>
+          <p class="pub-title">PINNs e aplicação em simulações de campo magnético solar: um estudo de caso da AR NOAA 11158</p>
+          <p class="pub-authors"><strong>B. F. Garcia</strong>, J. E. R. Costa, L. E. A. Vieira.</p>
+          <p class="pub-journal">XXV Workshop de Computação Aplicada, INPE, 9–12 September 2025</p>
+          <a href="https://doi.org/10.5281/zenodo.17246092" class="pub-doi" target="_blank">DOI →</a>
+        </div>
+      </li>
+
+    </ul>
+
+  </div>
+</section>
+
+<!-- ─── Talks & Conferences ───────────────────────── -->
+<section id="talks">
+  <div class="container">
+    <p class="section-label">Talks &amp; Conferences</p>
+    <h2 class="reveal">Presentations</h2>
+    <ul class="talk-list">
+
+      <li class="talk-item reveal">
+        <span class="talk-year">2026</span>
+        <div>
+          <p class="talk-title">NLFFF/PINN Pipeline for NOAA AR 3663 — Magnetic Topology Around an X-class Flare</p>
+          <p class="talk-meta">European Space Weather Week (ESWW 2026) · Florence, Italy · November 2026</p>
+          <span class="talk-badge-upcoming">Upcoming · Poster</span>
+        </div>
+      </li>
+
+      <li class="talk-item reveal">
+        <span class="talk-year">2025</span>
+        <div>
+          <p class="talk-title">Extreme Temporal Clustering of Solar Flares in AR 13663/13664</p>
+          <p class="talk-meta">3ª Semana Acadêmica da Geofísica Espacial · São José dos Campos, SP</p>
+          <span class="talk-badge">Presented</span>
+        </div>
+      </li>
+
+      <li class="talk-item reveal">
+        <span class="talk-year">2025</span>
+        <div>
+          <p class="talk-title">PINNs e aplicação em simulações de campo magnético solar</p>
+          <p class="talk-meta">XXV Workshop de Computação Aplicada · INPE · 9–12 September 2025</p>
+          <span class="talk-badge">Presented</span>
         </div>
       </li>
 
@@ -465,14 +592,16 @@
 <section id="cv">
   <div class="container">
     <p class="section-label">Curriculum Vitae</p>
-    <h2>Academic CV</h2>
-    <p class="cv-desc">
+    <h2 class="reveal">Academic CV</h2>
+    <p class="cv-desc reveal">
       My full CV includes academic formation, research experience, publications,
       conference contributions, and technical skills. Updated regularly.
     </p>
-    <a href="CV_BrunoFernandesGarcia.pdf" class="btn btn-dark" download>↓ Download PDF</a>
-    &nbsp;
-    <a href="CV_BrunoFernandesGarcia.pdf" class="btn btn-ghost" target="_blank">View online →</a>
+    <div class="reveal">
+      <a href="CV_BrunoFernandesGarcia.pdf" class="btn btn-dark" download>↓ Download PDF</a>
+      &nbsp;
+      <a href="CV_BrunoFernandesGarcia.pdf" class="btn btn-ghost" target="_blank">View online →</a>
+    </div>
   </div>
 </section>
 
@@ -480,12 +609,12 @@
 <section id="contact">
   <div class="container">
     <p class="section-label">Contact</p>
-    <h2>Get in Touch</h2>
-    <p class="contact-intro">
+    <h2 class="reveal">Get in Touch</h2>
+    <p class="contact-intro reveal">
       I welcome collaborations and discussions on solar physics, DEM pipelines,
       NLFFF methods, and machine learning approaches in heliophysics.
     </p>
-    <div class="contact-links">
+    <div class="contact-links reveal">
 
       <a href="mailto:bruno.garcia@inpe.br" class="contact-link">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -494,16 +623,16 @@
         Email
       </a>
 
-     <a href="http://lattes.cnpq.br/7725799765396213" class="contact-link" target="_blank">
-       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-         <polyline points="14 2 14 8 20 8"/>
-         <line x1="16" y1="13" x2="8" y2="13"/>
-         <line x1="16" y1="17" x2="8" y2="17"/>
-         <polyline points="10 9 9 9 8 9"/>
-       </svg>
-       Lattes
-     </a>
+      <a href="http://lattes.cnpq.br/7725799765396213" class="contact-link" target="_blank">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="16" y1="13" x2="8" y2="13"/>
+          <line x1="16" y1="17" x2="8" y2="17"/>
+          <polyline points="10 9 9 9 8 9"/>
+        </svg>
+        Lattes
+      </a>
 
       <a href="https://github.com/brunofernandesgarcia/" class="contact-link" target="_blank">
         <svg viewBox="0 0 24 24" fill="currentColor">
@@ -533,11 +662,25 @@
 <!-- ─── Footer ────────────────────────────────────── -->
 <footer>
   <div class="container">
-    <p>© 2025 Bruno Fernandes Garcia &nbsp;·&nbsp; Built with GitHub Pages &nbsp;·&nbsp;
+    <p>© 2026 Bruno Fernandes Garcia &nbsp;·&nbsp; Built with GitHub Pages &nbsp;·&nbsp;
       <a href="https://github.com/brunofernandesgarcia/brunofernandesgarcia.github.io">Source</a>
     </p>
   </div>
 </footer>
+
+<!-- ─── Scroll-reveal IntersectionObserver ────────── -->
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target); // anima só uma vez
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
 
 </body>
 </html>
